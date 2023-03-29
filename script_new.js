@@ -40,26 +40,26 @@ function round(playerSelection, computerSelection) {
 
 function start_game(playerSelection) {
   const computerSelection = getComputerChoice();
+  if (playerScore >= 5 || computerScore >= 5) {
+    return;
+  }
+  let result = round(playerSelection, computerSelection);
+
+  if (result == "You win!") {
+    playerScore++;
+  } else if (result == "You lose!") {
+    computerScore++;
+  } else {
+  }
+
+  content_result.innerHTML = `${result}`;
+  content_action.innerHTML = `you pick ${playerSelection}, computer pick ${computerSelection}`;
+  content_standings.innerHTML = `Player score: ${playerScore} Computer score: ${computerScore}`;
 
   if (playerScore >= 5) {
     content_result.innerHTML = `You win the game! You Rock!`;
   } else if (computerScore >= 5) {
     content_result.innerHTML = `You lose! You Suck!`;
-  } else {
-    let result = round(playerSelection, computerSelection);
-
-    if (result == "You win!") {
-      playerScore++;
-
-    } else if (result == "You lose!") {
-      computerScore++;
-      
-    } else {
-    }
-
-    content_result.innerHTML = `${result}`;
-    content_action.innerHTML = `you pick ${playerSelection}, computer pick ${computerSelection}`;
-    content_standings.innerHTML = `Player score: ${playerScore} Computer score: ${computerScore}`;
   }
 }
 
