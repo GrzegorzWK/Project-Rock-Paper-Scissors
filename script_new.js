@@ -9,6 +9,7 @@ const button_paper = document.querySelector(".paper");
 const button_scissors = document.querySelector(".scissors");
 
 content_result.innerHTML = "Welcome to our game traveler!";
+content_action.innerHTML = `Please select your choose to start a game`;
 let playerScore = 0;
 let computerScore = 0;
 
@@ -46,7 +47,18 @@ function start_game(playerSelection) {
     content_result.innerHTML = `You lose! You Suck!`;
   } else {
     let result = round(playerSelection, computerSelection);
+
+    if (result == "You win!") {
+      playerScore++;
+
+    } else if (result == "You lose!") {
+      computerScore++;
+      
+    } else {
+    }
+
     content_result.innerHTML = `${result}`;
+    content_action.innerHTML = `you pick ${playerSelection}, computer pick ${computerSelection}`;
     content_standings.innerHTML = `Player score: ${playerScore} Computer score: ${computerScore}`;
   }
 }
@@ -54,6 +66,10 @@ function start_game(playerSelection) {
 function reset_game() {
   playerScore = 0;
   computerScore = 0;
+
+  content_result.innerHTML = "Welcome to our game traveler!";
+  content_action.innerHTML = `Please select your choose to start a game`;
+  content_standings.innerHTML = ``;
 }
 
 button_rock.addEventListener("click", () => start_game("rock"));
